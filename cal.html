@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body{
+            background-color: #ee974a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            
+                }
+        .calculator {
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            background-color: #f2f2f2;
+        }
+        button {
+            justify-content: center;
+            padding: 10px;
+            font-size: 25px;
+            border: none;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 12px;
+            width: 90px;
+            height: 50;
+        }
+       input{
+        width:70% ;
+        height: 20px;
+        margin: 6px;
+        padding: 40px;
+        font-size:30px;
+        opacity: 0.5px;
+        border:none;
+        border-: ;
+        border-bottom: 1px solid #070707;
+        color: black;
+        text-align: right;
+
+       }
+       .right-buttons {
+        float: right;
+        justify-content: center;
+
+       }
+       .special-btn:hover{
+
+        background-color: #99897c;
+        cursor: pointer;
+       }
+    </style>
+</head>
+<body>
+    
+    <div class="calculator">
+        <input type="text" class="display" id="display" placeholder="0" disabled><br><br>
+        <div class="buttons">
+            <button class="special-btn" style="color: #cb6913;" onclick="clearDisplay()">AC</button>
+            <button class="special-btn" style="color: #cb6913;" onclick="appendclear()">C</button>
+            <button class="special-btn" style="color:#cb6913;" onclick="appendOperator('%')">%</button>
+            <button class="special-btn" style="color: #cb6913;" onclick="appendOperator('/')">÷</button><br><br>
+
+            <button class="special-btn" onclick="appendNumber('7')">7</button>
+            <button class="special-btn" onclick="appendNumber('8')">8</button>
+            <button class="special-btn" onclick="appendNumber('9')">9</button>
+            <button class="special-btn"  style="color: #cb6913;" onclick="appendOperator('*')">x</button><br><br>
+
+            <button class="special-btn" onclick="appendNumber('4')">4</button>
+            <button class="special-btn"  onclick="appendNumber('5')">5</button>
+            <button class="special-btn" onclick="appendNumber('6')">6</button>
+            <button style="color: #cb6913;" onclick="appendOperator('-')">-</button><br><br>
+
+            <button class="special-btn" onclick="appendNumber('1')">1</button>
+            <button class="special-btn" onclick="appendOperator('2')">2</button>
+            <button class="special-btn" onclick="appendOperator('3')">3</button>
+            <button class="special-btn" style="color: #cb6913;" onclick="appendOperator('+')">+</button><br><br>
+            <div class="right-buttons">
+            <button class="special-btn" onclick="appendNumber('0')">0</button>
+                <button class="special-btn" onclick="appendNumber('.')">.</button>
+                <button class="special-btn" style="color: #ffffff;background-color: #c9772f ;border-radius:50%;width: 80px; height:80px;" onclick="appendresult('=')">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function appendNumber(number) {
+           
+            if(number==='.'&&currentInput.includes('.'))return;
+            currentInput += number;
+            display.value = currentInput;
+        }
+        function clearDisplay(){
+            currentInput="";
+            display.value="";
+        }
+        function appendOperator(op) {
+            currentInput += ''+op+'';
+            display.value = currentInput;     
+        }
+
+        function appendresult(){
+            try{
+                currentInput=eval(currentInput);
+                display.value=currentInput;
+            }
+                catch(e){
+                    display.value="ERROR";
+                    currentInput='';
+                    
+                }
+
+        }
+        function appendclear(){
+            currentInput=currentInput.slice(0,-1);
+            display.value=currentInput;
+        }
+       
+    </script>
+</body>
+</html>
